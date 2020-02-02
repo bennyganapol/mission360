@@ -1,19 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/* eslint-disable import/named */
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import Register from './pages/Register';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!!  !!3</Text>
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const MainNavigator = createStackNavigator(
+  {
+    LoginPageRoute: { screen: LoginPage },
+    HomePageRoute: { screen: HomePage },
+    RegisterRoute: { screen: Register }
   },
-});
+  {
+    initialRouteName: 'LoginPageRoute',
+  }
+);
+
+const AppContainer = createAppContainer(MainNavigator);
+
+export default AppContainer;
